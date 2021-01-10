@@ -1,0 +1,464 @@
+{
+  "id": "2188393",
+  "name": "webmusic",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "792341",
+      "name": "music3-音乐",
+      "font_class": "single",
+      "unicode": "e69d",
+      "unicode_decimal": 59037
+    },
+    {
+      "icon_id": "7324582",
+      "name": "专辑",
+      "font_class": "album",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "5667202",
+      "name": "歌单",
+      "font_class": "playlist",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
+      "icon_id": "15795714",
+      "name": "王冠",
+      "font_class": "choiceness-double",
+      "unicode": "e698",
+      "unicode_decimal": 59032
+    },
+    {
+      "icon_id": "789294",
+      "name": "user",
+      "font_class": "singer-user",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "6094626",
+      "name": "静音",
+      "font_class": "mute",
+      "unicode": "e85d",
+      "unicode_decimal": 59485
+    },
+    {
+      "icon_id": "6537060",
+      "name": "音量",
+      "font_class": "volume",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "9470458",
+      "name": "音量",
+      "font_class": "song-volume",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "10085724",
+      "name": "井号",
+      "font_class": "well",
+      "unicode": "e746",
+      "unicode_decimal": 59206
+    },
+    {
+      "icon_id": "4317738",
+      "name": "down",
+      "font_class": "down-2",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "11854340",
+      "name": "up",
+      "font_class": "up",
+      "unicode": "e789",
+      "unicode_decimal": 59273
+    },
+    {
+      "icon_id": "5997343",
+      "name": "plus",
+      "font_class": "plus",
+      "unicode": "e975",
+      "unicode_decimal": 59765
+    },
+    {
+      "icon_id": "6076655",
+      "name": "like",
+      "font_class": "song-like",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "6941693",
+      "name": "下载",
+      "font_class": "song-download",
+      "unicode": "e6bf",
+      "unicode_decimal": 59071
+    },
+    {
+      "icon_id": "286976",
+      "name": "download",
+      "font_class": "download1",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "8383541",
+      "name": "download",
+      "font_class": "player-download",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "2867373",
+      "name": "pen",
+      "font_class": "pen",
+      "unicode": "e840",
+      "unicode_decimal": 59456
+    },
+    {
+      "icon_id": "13979581",
+      "name": "艾特",
+      "font_class": "at",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "7432441",
+      "name": "下一曲",
+      "font_class": "lyric-next",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "7432524",
+      "name": "上一曲",
+      "font_class": "lyric-prev",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "8545036",
+      "name": "播放",
+      "font_class": "lyric-play",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "11713014",
+      "name": "search close",
+      "font_class": "lyric-close",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "11868570",
+      "name": "设 置",
+      "font_class": "lyric-setting",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "18186583",
+      "name": "暂停 停止",
+      "font_class": "lyric-pause",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "15454390",
+      "name": "play",
+      "font_class": "play-double",
+      "unicode": "e793",
+      "unicode_decimal": 59283
+    },
+    {
+      "icon_id": "9225344",
+      "name": "精选",
+      "font_class": "choiceness",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "918005",
+      "name": "笑脸",
+      "font_class": "emotional",
+      "unicode": "e694",
+      "unicode_decimal": 59028
+    },
+    {
+      "icon_id": "3335830",
+      "name": "玩模乐器",
+      "font_class": "style",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "4941863",
+      "name": "地球",
+      "font_class": "languages",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "5226201",
+      "name": "咖啡",
+      "font_class": "scene",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "7658924",
+      "name": "主题",
+      "font_class": "theme-list",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "10097587",
+      "name": "MV - 网易icon",
+      "font_class": "MVS",
+      "unicode": "e674",
+      "unicode_decimal": 58996
+    },
+    {
+      "icon_id": "3111560",
+      "name": "MV",
+      "font_class": "mv",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "3259637",
+      "name": "SQ",
+      "font_class": "sq",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "392068",
+      "name": "PLAY",
+      "font_class": "playlist-play",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "1555757",
+      "name": "right",
+      "font_class": "right",
+      "unicode": "e68b",
+      "unicode_decimal": 59019
+    },
+    {
+      "icon_id": "11993596",
+      "name": "user",
+      "font_class": "user",
+      "unicode": "e7c3",
+      "unicode_decimal": 59331
+    },
+    {
+      "icon_id": "1638820",
+      "name": "爱心",
+      "font_class": "player-like",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "77697",
+      "name": "点赞",
+      "font_class": "zan",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "7383189",
+      "name": "评论",
+      "font_class": "comment",
+      "unicode": "e6d3",
+      "unicode_decimal": 59091
+    },
+    {
+      "icon_id": "16209384",
+      "name": "分享",
+      "font_class": "share",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "17537713",
+      "name": "文件夹",
+      "font_class": "player-collect",
+      "unicode": "ecf9",
+      "unicode_decimal": 60665
+    },
+    {
+      "icon_id": "1365",
+      "name": "缩小",
+      "font_class": "shrink",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "2567867",
+      "name": "放大",
+      "font_class": "blow",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "5876981",
+      "name": "列表顺序",
+      "font_class": "order",
+      "unicode": "e802",
+      "unicode_decimal": 59394
+    },
+    {
+      "icon_id": "12036456",
+      "name": "循环07",
+      "font_class": "circle",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "12036465",
+      "name": "随机04",
+      "font_class": "random",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "12036466",
+      "name": "循环02",
+      "font_class": "circle-one",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "866517",
+      "name": "喜欢",
+      "font_class": "like",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "4472417",
+      "name": "music",
+      "font_class": "local-music",
+      "unicode": "e6fa",
+      "unicode_decimal": 59130
+    },
+    {
+      "icon_id": "7587954",
+      "name": "收藏",
+      "font_class": "collect",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "8708752",
+      "name": "下载",
+      "font_class": "download",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "12687056",
+      "name": "云",
+      "font_class": "cloud",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
+      "icon_id": "1301391",
+      "name": "衣服",
+      "font_class": "theme",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "722171",
+      "name": "arrow-left",
+      "font_class": "preview-left",
+      "unicode": "e75b",
+      "unicode_decimal": 59227
+    },
+    {
+      "icon_id": "722172",
+      "name": "arrow-right",
+      "font_class": "preview-right",
+      "unicode": "e75c",
+      "unicode_decimal": 59228
+    },
+    {
+      "icon_id": "1567406",
+      "name": "arrow_down",
+      "font_class": "down",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "206488",
+      "name": "set-line",
+      "font_class": "set",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "1079410",
+      "name": "开始",
+      "font_class": "play",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "1840589",
+      "name": "音乐",
+      "font_class": "yinle",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "3506474",
+      "name": "music",
+      "font_class": "music",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "7677192",
+      "name": "暂停",
+      "font_class": "pause",
+      "unicode": "e739",
+      "unicode_decimal": 59193
+    },
+    {
+      "icon_id": "8142657",
+      "name": "上一曲",
+      "font_class": "pre",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
+    {
+      "icon_id": "8142660",
+      "name": "下一曲",
+      "font_class": "next",
+      "unicode": "e671",
+      "unicode_decimal": 58993
+    },
+    {
+      "icon_id": "10267591",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    }
+  ]
+}

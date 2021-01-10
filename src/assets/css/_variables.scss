@@ -1,0 +1,145 @@
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
+
+@mixin noWrap ($width) {
+    max-width: $width;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin multipleNoWrap($line) {
+    display: -webkit-box;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-all; //让浏览器实现在任意位置的换行 *break-all为允许在单词内换行*
+    -webkit-box-orient: vertical; //设置伸缩盒对象的子元素的排列方式 垂直方式
+    -webkit-line-clamp: $line; //用来限制在一个块元素中显示的文本的行数
+}
+
+
+.tabs-nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    background: #fff;
+
+    &.absolute {
+        position: absolute;
+        z-index: 2;
+    }
+
+    .tabs-nav-item {
+        margin-right: 25px;
+        cursor: pointer;
+
+        &.active {
+            position: relative;
+            font-weight: bold;
+
+            &.scale {
+                font-size: 20px;
+            }
+
+            &::after {
+                position: absolute;
+                right: 0;
+                bottom: -10px;
+                left: 0;
+                width: 78%;
+                height: 3px;
+                margin: auto;
+                background: #ec4141;
+                border-radius: 4px;
+                content: "";
+            }
+        }
+    }
+}
+
+.lyrics {
+  height: 320px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  
+  >li {
+      width: 88%;
+      margin-bottom: 20px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #666;
+      white-space: pre-wrap;
+      transition: all 0.2s ease-in;
+
+      &.active {
+          font-size: 16px;
+          font-weight: bold;
+          color: #000;
+      }
+  }
+}
+
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+  
+    > div {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      background: #ed4141;
+      border-radius: 50%;
+      opacity: 0.6;
+      -webkit-animation: loading 1.5s ease-in infinite;
+              animation: loading 1.5s ease-in infinite;
+  
+      &:nth-child(2) {
+        -webkit-animation-delay: -0.8s;
+                animation-delay: -0.8s;
+      }
+    }
+  }
+  
+  @-webkit-keyframes loading {
+    0% {
+      transform: scale(0);
+    }
+  
+    50% {
+      transform: scale(1);
+    }
+  
+    100% {
+      transform: scale(0);
+    }
+  }
+  
+  @keyframes loading {
+    0% {
+      transform: scale(0);
+    }
+  
+    50% {
+      transform: scale(1);
+    }
+  
+    100% {
+      transform: scale(0);
+    }
+  }

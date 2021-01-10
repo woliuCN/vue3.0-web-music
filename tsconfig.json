@@ -11,6 +11,9 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false, //关闭null检查
     "types": [
       "webpack-env"
     ],

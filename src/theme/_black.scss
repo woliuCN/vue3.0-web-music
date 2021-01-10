@@ -1,0 +1,50 @@
+// 统一的主题色与字体颜色
+$primary-color: #212124;
+$text-color: #D0D0D0;
+
+
+// 头部字体颜色
+$header-text-color: #f2f3f4;
+// 左右按钮背景色
+$header-history-background: #262626;
+// input框颜色
+$header-input-background: #29292c;
+$header-input-placeholder-color: #515153;
+
+
+
+.dark-bg-primary_1 {
+    background: $primary-color;
+}
+
+.dark-cl-primary_1 {
+    color: $primary-color;
+}
+
+.dark-bg-primary_2 {
+    background: $header-history-background;
+}
+
+.dark-cl-primary_2 {
+    color: $header-history-background;
+}
+
+.dark-bg-primary_3 {
+    background: $header-input-placeholder-color;
+}
+
+.dark-cl-primary_3 {
+    color: $header-input-placeholder-color;
+
+    &::placeholder {
+        color: $header-input-placeholder-color;;
+    }
+}
+
+.dark-bg-primary_4 {
+    background: $header-input-background;
+}
+
+.dark-cl-primary_4 {
+    color: $header-input-background;
+}

@@ -5,15 +5,28 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "eslint --fix --ext \"src/**/*.{vue,less,css,scss}\"",
+    "lint:style": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
+    "commit": "git add . && git-cz"
   },
   "dependencies": {
+    "amfe-flexible": "^2.2.1",
+    "axios": "^0.21.0",
+    "better-scroll": "^2.0.5",
     "core-js": "^3.6.5",
+    "create-keyframe-animation": "^0.1.0",
+    "swiper": "^5.0.3",
     "vue": "^3.0.0",
+    "vue-awesome-swiper": "^4.1.1",
     "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vuex": "^4.0.0-0",
+    "vuex-module-decorators": "^1.0.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@types/axios": "^0.14.0",
+    "@types/swiper": "^5.4.1",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -31,8 +44,34 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^7.0.0-0",
+    "husky": "^4.3.7",
     "node-sass": "^4.12.0",
+    "postcss-plugin-px2rem": "^0.8.1",
     "sass-loader": "^8.0.2",
+    "stylelint": "^13.7.2",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.1.0",
     "typescript": "~3.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woliuCN/vue3.0-web-music.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/woliuCN/vue3.0-web-music/issues"
+  },
+  "homepage": "https://github.com/woliuCN/vue3.0-web-music",
+  "changelog": {
+    "bugsUrl": "https://github.com/woliuCN/vue3.0-web-music/issues",
+    "emojis": true,
+    "authorName": false,
+    "authorEmail": false
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }
