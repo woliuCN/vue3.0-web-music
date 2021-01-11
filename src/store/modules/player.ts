@@ -1,6 +1,6 @@
 import { VuexModule, Module, Mutation, getModule, Action } from 'vuex-module-decorators'
 import store from '../index'
-import { Mode } from '@/utils/constant'
+import { MODE } from '@/utils/constant'
 import { getSongCommentInfo, getSongLyrics, getSimiSongs } from '@/api/player/index'
 export interface Lyric {
   time: number;
@@ -29,7 +29,7 @@ class Player extends VuexModule {
     duration = 0
     playing = false
     volume = Number(window.localStorage.getItem('volume')) || 0.5
-    mode = Mode.singleCycle
+    mode = MODE.singleCycle
     lyrics: Lyric[] = []
     currentLyric = ''
     currentLineNo = 0
@@ -67,7 +67,7 @@ class Player extends VuexModule {
     // 改变当前歌曲播放状态
     @Mutation
     CHANGE_MODE () {
-      this.mode = this.mode === Mode.randomPlay ? 0 : this.mode + 1
+      this.mode = this.mode === MODE.randomPlay ? 0 : this.mode + 1
     }
 
     // 改变当前播放状态

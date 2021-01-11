@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios'
-import { formatDuration, translateCount } from '@/utils/util'
 import { SEARCH_TYPE } from '@/utils/constant'
+import { formatDuration, translateCount } from '@/utils/util'
 
 export const convertSearchSuggest = (res: AxiosResponse<any>) => {
   const { result } = res.data

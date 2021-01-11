@@ -27,7 +27,7 @@ import MiniPlayer from './MiniPlayer.vue'
 import NormalPlayer from './NormalPlayer.vue'
 import { computed, defineComponent, onMounted, reactive, ref, toRefs, watch } from 'vue'
 import { playerStore } from '@/store/modules/player'
-import { Mode } from '@/utils/constant'
+import { MODE } from '@/utils/constant'
 
 export type Duration = {
   startTime: number;
@@ -86,16 +86,16 @@ export default defineComponent({
     const handleEnd = (state = 1) => {
       const { mode } = playerStore
       switch (mode) {
-        case Mode.singleCycle:
+        case MODE.singleCycle:
           handleLoop()
           break
-        case Mode.orderPlay:
+        case MODE.orderPlay:
           handleOrder(state)
           break
-        case Mode.listLoop:
+        case MODE.listLoop:
           handleListLoop()
           break
-        case Mode.randomPlay:
+        case MODE.randomPlay:
           handleRandom()
           break
         default:

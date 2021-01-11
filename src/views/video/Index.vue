@@ -134,14 +134,14 @@ export default defineComponent({
     const getComments = async () => {
       const id = commentData.id
       const func = type.value ? getVideoComment : getMvComment
-      const { hotComments, comments, total } = await func(
+      const { hotComments, comments, total, pageCount } = await func(
         id,
         commentData.currentPage
       )
       commentData.hotComments = hotComments
       commentData.comments = comments
       commentData.total = total
-      commentData.pageCount = total % 60 ? Math.floor(total / 60) + 1 : total / 60
+      commentData.pageCount = pageCount
     }
     const init = async (id: string) => {
       if (type.value) {

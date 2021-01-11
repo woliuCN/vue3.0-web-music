@@ -62,7 +62,7 @@ import Progress from '@/components/progress/Index.vue'
 import OutlineLyric from '@/components/outline-lyric/Index.vue'
 import { defineComponent, PropType, computed, ref } from 'vue'
 import { playerStore } from '@/store/modules/player'
-import { Mode } from '@/utils/constant'
+import { MODE } from '@/utils/constant'
 import { formatDuration, debounce } from '@/utils/util'
 export default defineComponent({
   components: {
@@ -100,13 +100,13 @@ export default defineComponent({
     const modeIconClass = computed<string>(() => {
       const { mode } = playerStore
       switch (mode) {
-        case Mode.singleCycle:
+        case MODE.singleCycle:
           return 'icon-circle-one'
-        case Mode.orderPlay:
+        case MODE.orderPlay:
           return 'icon-order'
-        case Mode.listLoop:
+        case MODE.listLoop:
           return 'icon-circle'
-        case Mode.randomPlay:
+        case MODE.randomPlay:
           return 'icon-random'
         default:
           return 'icon-circle-one'

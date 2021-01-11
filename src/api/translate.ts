@@ -1,5 +1,6 @@
-import { formatTime, translateCount } from '@/utils/util'
 import { AxiosResponse } from 'axios'
+import { formatTime } from '@/utils/util'
+import { COMMENT_LIMIT } from '@/utils/constant'
 
 export const convertComments = (res: AxiosResponse<any>) => {
   let { hotComments, comments, total } = res.data
@@ -61,6 +62,7 @@ export const convertComments = (res: AxiosResponse<any>) => {
   return {
     hotComments: hotComments || [],
     comments,
-    total
+    total,
+    pageCount: total % COMMENT_LIMIT ? Math.floor(total / COMMENT_LIMIT) + 1 : total / COMMENT_LIMIT
   }
 }

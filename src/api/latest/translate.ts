@@ -1,5 +1,5 @@
-import { formatDuration } from '@/utils/util'
 import { AxiosResponse } from 'axios'
+import { formatDuration } from '@/utils/util'
 
 export const convertTopSongs = (res: AxiosResponse<any>): Song[] => {
   const { data } = res.data

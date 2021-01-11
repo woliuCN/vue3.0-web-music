@@ -175,9 +175,22 @@ export const SEARCH_TYPE = {
   }
 }
 
-export enum Mode {
+// 播放模式
+export enum MODE {
   singleCycle,
   orderPlay,
   listLoop,
   randomPlay
 }
+
+// 评论每页数量
+export const COMMENT_LIMIT = 60
+
+// mvlist 每页数量
+export const MVLIST_LIMIT = 105
+
+// playlist 每页数量
+export const PLAYLIST_LIMIT = 100
+
+// singerlist 每页数量
+export const SINGER_LIMIT = 60

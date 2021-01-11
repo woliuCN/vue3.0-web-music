@@ -79,7 +79,7 @@
             :total="songCommentInfo.total"
           />
           <pagin
-            :pageCount="Math.floor(songCommentInfo.total / 20) + 1"
+            :pageCount="songCommentInfo.pageCount"
             :pagerCount="9"
             :currentPage="currentPage"
             @change="handlePaginChange"

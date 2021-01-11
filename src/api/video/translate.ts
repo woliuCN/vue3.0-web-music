@@ -1,7 +1,8 @@
-import { formatDate, formatDuration, translateCount } from '@/utils/util'
 import { AxiosResponse } from 'axios'
-import { getMvZan, getMvUrl, getVideoZan, getVideoUrl } from '.'
+import { MVLIST_LIMIT } from '@/utils/constant'
 import { getSingerInfo } from '../singer'
+import { formatDate, formatDuration, translateCount } from '@/utils/util'
+import { getMvZan, getMvUrl, getVideoZan, getVideoUrl } from './index'
 
 export const convertMvList = (res: AxiosResponse<any>) => {
   const { data, count } = res.data
@@ -17,9 +18,11 @@ export const convertMvList = (res: AxiosResponse<any>) => {
       playCount: translateCount(mv.playCount)
     }
   })
+  const total = count || 0
   return {
     mvList,
-    total: count || 0
+    total,
+    pageCount: total % MVLIST_LIMIT ? Math.floor(total / MVLIST_LIMIT) + 1 : total / MVLIST_LIMIT
   }
 }
 

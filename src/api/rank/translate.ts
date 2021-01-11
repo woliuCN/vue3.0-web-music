@@ -1,5 +1,5 @@
-import { formatDate, translateCount } from '@/utils/util'
 import { AxiosResponse } from 'axios'
+import { formatDate, translateCount } from '@/utils/util'
 import { getRankSongs, getSingerRanks } from './index'
 
 export const convertRankSongs = (res: AxiosResponse<any>) => {

@@ -1,4 +1,5 @@
 import { getRequest } from '../request'
+import { SINGER_LIMIT } from '@/utils/constant'
 import { convertAlbum, convertAlbumSong, convertSingerInfo, convertSingers, convertIntro, convertMv, convertSimiSinger } from './translate'
 const REQUEST_URL = {
   singerLists: '/artist/list',
@@ -9,9 +10,8 @@ const REQUEST_URL = {
   simiSingers: '/simi/artist',
   albumSongs: '/album'
 }
-const LIMIT = 60
 export const getSingerLists = (type: number, area: number, initial: string, currentPage: number) => {
-  return getRequest(REQUEST_URL.singerLists, { type, area, initial, limit: LIMIT, offset: (currentPage - 1) * LIMIT }).then(convertSingers)
+  return getRequest(REQUEST_URL.singerLists, { type, area, initial, limit: SINGER_LIMIT, offset: (currentPage - 1) * SINGER_LIMIT }).then(convertSingers)
 }
 
 export const getSingerAlbums = (id: number) => {

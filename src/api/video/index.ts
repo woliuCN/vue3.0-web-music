@@ -1,8 +1,7 @@
-import { convertComments } from '../translate'
 import { getRequest } from '../request'
+import { convertComments } from '../translate'
+import { COMMENT_LIMIT, MVLIST_LIMIT } from '@/utils/constant'
 import { convertMvdetail, convertMvList, convertRelateVideo, convertVideodetail } from './translate'
-const COMMIT_LIMIT = 60
-const MVLIST_LIMIT = 105
 const REQUEST_URL = {
   mvList: '/mv/all',
   mvDetail: '/mv/detail',
@@ -34,7 +33,7 @@ export const getMvUrl = (id: number) => {
 }
 
 export const getMvComment = (id: string | number, currentPage: number) => {
-  return getRequest(REQUEST_URL.mvComment, { id, limit: COMMIT_LIMIT, offset: (currentPage - 1) * COMMIT_LIMIT }).then(convertComments)
+  return getRequest(REQUEST_URL.mvComment, { id, limit: COMMENT_LIMIT, offset: (currentPage - 1) * COMMENT_LIMIT }).then(convertComments)
 }
 
 export const getRelatedVideo = (id: number | string) => {
@@ -53,5 +52,5 @@ export const getVideoUrl = (id: string) => {
 }
 
 export const getVideoComment = (id: string | number, currentPage: number) => {
-  return getRequest(REQUEST_URL.videoComment, { id, limit: COMMIT_LIMIT, offset: (currentPage - 1) * COMMIT_LIMIT }).then(convertComments)
+  return getRequest(REQUEST_URL.videoComment, { id, limit: COMMENT_LIMIT, offset: (currentPage - 1) * COMMENT_LIMIT }).then(convertComments)
 }

@@ -1,8 +1,8 @@
 import { getRequest } from '../request'
-import { convertCatList, convertPlayLists, convertDetails } from './translate'
 import { convertComments } from '../translate'
-const COMMIT_LIMIT = 60
-const PLAYLIST_LIMIT = 100
+import { COMMENT_LIMIT, PLAYLIST_LIMIT } from '@/utils/constant'
+import { convertCatList, convertPlayLists, convertDetails } from './translate'
+
 const REQUEST_URL = {
   detail: '/playlist/detail',
   comment: '/comment/playlist',
@@ -36,5 +36,5 @@ export const getPlayListDetails = (id: number) => {
 }
 
 export const getPlayListComments = (id: number, currentPage: number) => {
-  return getRequest(REQUEST_URL.comment, { id, limit: COMMIT_LIMIT, offset: (currentPage - 1) * COMMIT_LIMIT }).then(convertComments)
+  return getRequest(REQUEST_URL.comment, { id, limit: COMMENT_LIMIT, offset: (currentPage - 1) * COMMENT_LIMIT }).then(convertComments)
 }

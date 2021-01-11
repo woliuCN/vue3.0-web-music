@@ -1,4 +1,4 @@
-import { createVNode, toRefs, reactive, h, render, VNode } from 'vue'
+import { createVNode, toRefs, reactive, h, render, VNode, watch } from 'vue'
 
 interface Options {
   visible: boolean;
@@ -9,9 +9,20 @@ function createLoadingComponent (options: Options) {
   const data = reactive({
     visible: options.visible ? options.visible : false
   })
+
+  function destorySelf () {
+    if (vm.el && vm.el.parentNode) {
+      vm.el.parentNode.removeChild(vm.el)
+    }
+  }
   const loadingComponent = {
     name: 'loading',
     setup () {
+      watch(() => data.visible, (val: boolean) => {
+        if (!val) {
+          destorySelf()
+        }
+      })
       return {
         ...toRefs(data)
       }

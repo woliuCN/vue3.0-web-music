@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios'
 import { getSongs } from '../common'
+import { PLAYLIST_LIMIT } from '@/utils/constant'
 import { formatTime, formatDate, formatDuration, translateCount } from '@/utils/util'
 
 export const convertDetails = async (res: AxiosResponse<any>) => {
@@ -62,6 +63,7 @@ export const convertPlayLists = (res: AxiosResponse<any>) => {
   })
   return {
     playlists: covertPlaylists,
-    total
+    total,
+    pageCount: total % PLAYLIST_LIMIT ? Math.floor(total / PLAYLIST_LIMIT) + 1 : total / PLAYLIST_LIMIT
   }
 }

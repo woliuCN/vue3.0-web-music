@@ -91,7 +91,6 @@ export default defineComponent({
     SongList
   },
   setup () {
-    const LIMIT = 60
     const isLoading = ref<boolean>(false)
     const activeName = ref<string>('songList')
     const detailInfo = ref<object>({})
@@ -110,14 +109,14 @@ export default defineComponent({
     }
     const getComments = async () => {
       isLoading.value = true
-      const { hotComments, comments, total } = await getAlbumComments(
+      const { hotComments, comments, total, pageCount } = await getAlbumComments(
         id,
         data.currentPage
       )
       data.hotComments = hotComments
       data.comments = comments
       data.total = total
-      data.pageCount = Math.floor(total / LIMIT) + 1
+      data.pageCount = pageCount
       isLoading.value = false
     }
     const init = async () => {

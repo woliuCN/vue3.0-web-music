@@ -1,6 +1,6 @@
-import { formatDate, formatDuration, translateCount } from '@/utils/util'
 import { AxiosResponse } from 'axios'
-import { getAlbumAllCount } from '.'
+import { getAlbumAllCount } from './index'
+import { formatDate, formatDuration, translateCount } from '@/utils/util'
 
 export const convertDetails = async (res: AxiosResponse<any>) => {
   const { songs, album } = res.data

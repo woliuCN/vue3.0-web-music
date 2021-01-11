@@ -1,7 +1,7 @@
+import { COMMENT_LIMIT } from '@/utils/constant'
+import { convertDetails } from './translate'
 import { convertComments } from '../translate'
 import { getRequest } from '../request'
-import { convertDetails } from './translate'
-const COMMIT_LIMIT = 60
 const REQUEST_URL = {
   detail: '/album',
   comment: '/comment/album',
@@ -17,5 +17,5 @@ export const getAlbumAllCount = (id: number) => {
 }
 
 export const getAlbumComments = (id: number, currentPage: number) => {
-  return getRequest(REQUEST_URL.comment, { id, limit: COMMIT_LIMIT, offset: (currentPage - 1) * COMMIT_LIMIT }).then(convertComments)
+  return getRequest(REQUEST_URL.comment, { id, limit: COMMENT_LIMIT, offset: (currentPage - 1) * COMMENT_LIMIT }).then(convertComments)
 }

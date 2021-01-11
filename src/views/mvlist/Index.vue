@@ -106,7 +106,7 @@ export default defineComponent({
       isLoading.value = true
       const res = await getMvList(selectData.area, selectData.type, selectData.order, paginData.currentPage)
       mvList.value = res.mvList
-      paginData.pageCount = res.total % 105 ? Math.floor(res.total / 105) + 1 : res.total / 105
+      paginData.pageCount = res.pageCount
       isLoading.value = false
     }
     const handleChangeCondition = (key: string, value: string) => {

@@ -11,7 +11,6 @@ export default defineComponent({
     Pagin
   },
   setup () {
-    const PLAYLIST_LIMIT = 100
     const isShowAll = ref<boolean>(false)
     const isLoading = ref<boolean>(false)
     const activeCat = computed(() => playlistStore.activeCat)
@@ -96,9 +95,9 @@ export default defineComponent({
     const getPlaylists = async () => {
       isLoading.value = true
       playlistStore.getBoutiquelists(activeCat.value)
-      const { playlists, total } = await getPlayLists(activeCat.value, paginData.currentPage)
+      const { playlists, pageCount } = await getPlayLists(activeCat.value, paginData.currentPage)
       currentPlaylists.value = playlists
-      paginData.pageCount = Math.floor(total / PLAYLIST_LIMIT) + 1
+      paginData.pageCount = pageCount
       isLoading.value = false
     }
 
