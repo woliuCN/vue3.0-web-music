@@ -25,6 +25,7 @@ export default defineComponent({
   },
   setup () {
     onMounted(() => {
+      // eslint-disable-next-line
       const newSwiper = new Swiper('.swiper-container', {
         loop: true,
         autoplay: true,

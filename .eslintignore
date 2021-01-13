@@ -1,0 +1,6 @@
+node_modules
+dist/
+test
+build/
+src/**/*.d.ts
+src/assets/icon
