@@ -8,8 +8,8 @@
     </aside>
     <main class="main" :class="{cover : isCover}" :style="{bottom: playerIsShow ? '0' : '70px'}">
       <Tabs v-if="!isCover" :tabList="tabList" :defaultActive="tabDefault" @on-change="handleTabChange"/>
-      <div class="main-page" id="mainPage">
-        <router-view/>
+      <div class="main-page" id="mainPage" ref="mainRef">
+        <router-view @pagin-change="handlePaginChange"/>
       </div>
     </main>
     <router-view name="video"/>
@@ -26,6 +26,7 @@ import { TabItem } from '@/components/header-tabs/type'
 import { defineComponent, ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { playerStore } from '@/store/modules/player'
+import { scrollTop } from '@/utils/animation'
 export default defineComponent({
   name: 'Home',
   components: {
@@ -37,6 +38,7 @@ export default defineComponent({
   setup () {
     const $router = useRouter()
     const $route = useRoute()
+    const mainRef = ref<HTMLDivElement | null>(null)
     const tabList = ref<TabItem[]>([
       {
         content: '个性推荐',
@@ -64,15 +66,21 @@ export default defineComponent({
     const handleTabChange = (path: string) => {
       $router.push(path)
     }
+    // 页面跳转的，得回到顶部
+    const handlePaginChange = () => {
+      scrollTop(mainRef)
+    }
     const isCover = computed(() => {
       return $route.meta.isCover
     })
     return {
+      mainRef,
       tabList,
       tabDefault,
       isCover,
       playerIsShow,
-      handleTabChange
+      handleTabChange,
+      handlePaginChange
     }
   }
 })

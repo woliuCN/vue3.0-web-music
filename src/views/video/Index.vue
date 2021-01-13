@@ -1,9 +1,9 @@
 <template>
-  <div class="video">
+  <div class="video" ref="divRef">
     <div class="video-left">
       <h1 class="title" @click="handleBack">
         <i class="iconfont icon-preview-left"></i>
-        <span>{{type ? '视频': 'MV'}}详情</span>
+        <span>{{ type ? "视频" : "MV" }}详情</span>
       </h1>
       <video
         width="640"
@@ -89,20 +89,23 @@
     <div class="video-right">
       <h1 class="title">相关推荐</h1>
       <ul>
-        <li class="related-video" v-for="item in relatedVideo" :key="item.id" @click="handleChangeVideo(item.id)">
+        <li
+          class="related-video"
+          v-for="item in relatedVideo"
+          :key="item.id"
+          @click="handleChangeVideo(item.id)"
+        >
           <div class="video-cover">
-            <img
-              :src="item.coverUrl"
-            />
+            <img :src="item.coverUrl" />
             <div class="count">
               <i class="iconfont icon-playlist-play"></i>
-              <span>{{item.playCount}}</span>
+              <span>{{ item.playCount }}</span>
             </div>
-            <div class="duration">{{item.durationStr}}</div>
+            <div class="duration">{{ item.durationStr }}</div>
           </div>
           <div class="video-info">
-              <p class="info-title">{{item.title}}</p>
-              <div class="info-creator">by {{item.creator}}</div>
+            <p class="info-title">{{ item.title }}</p>
+            <div class="info-creator">by {{ item.creator }}</div>
           </div>
         </li>
       </ul>
@@ -112,8 +115,20 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
-import { onBeforeRouteUpdate, RouteLocationNormalized, useRoute, useRouter } from 'vue-router'
-import { getMvDetail, getVideoDetail, getVideoComment, getMvComment, getRelatedVideo } from '@/api/video/index'
+import {
+  onBeforeRouteUpdate,
+  RouteLocationNormalized,
+  useRoute,
+  useRouter
+} from 'vue-router'
+import {
+  getMvDetail,
+  getVideoDetail,
+  getVideoComment,
+  getMvComment,
+  getRelatedVideo
+} from '@/api/video/index'
+import { scrollTop } from '@/utils/animation'
 export default defineComponent({
   setup () {
     const reg = /[a-zA-Z]/g
@@ -123,6 +138,7 @@ export default defineComponent({
     const showIntro = ref(false)
     const videoInfo = ref({})
     const relatedVideo = ref([])
+    const divRef = ref<HTMLDivElement | null>(null)
     const commentData = reactive({
       hotComments: [],
       comments: [],
@@ -161,6 +177,7 @@ export default defineComponent({
       $router.push(`/video/${id}`)
     }
     const handlePaginChange = (cur: number) => {
+      scrollTop(divRef, 500)
       commentData.currentPage = cur
       getComments()
     }
@@ -176,6 +193,7 @@ export default defineComponent({
       init(id as string)
     })
     return {
+      divRef,
       type,
       showIntro,
       videoInfo,
@@ -394,15 +412,15 @@ export default defineComponent({
         font-size: 13px;
 
         .info-title {
-            height: 40px;
-            margin: 10px 0;
-            line-height: 1.5;
-            @include multipleNoWrap(2);
+          height: 40px;
+          margin: 10px 0;
+          line-height: 1.5;
+          @include multipleNoWrap(2);
         }
 
         .info-creator {
-            font-size: 12px;
-            color: #ccc;
+          font-size: 12px;
+          color: #ccc;
         }
       }
     }

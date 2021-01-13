@@ -1,8 +1,8 @@
 import PlayListItem from '@/components/playlist-item/Index.vue'
 import Pagin from '@/components/pagin/Index.vue'
 import styles from './Index.module.scss'
-import { computed, defineComponent, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { computed, defineComponent, onMounted, reactive, ref } from 'vue'
 import { getHotCatLists, getAllCatLists, getPlayLists } from '@/api/playlist/index'
 import { playlistStore } from '@/store/modules/playlist'
 export default defineComponent({
@@ -10,10 +10,12 @@ export default defineComponent({
     PlayListItem,
     Pagin
   },
-  setup () {
+  emits: ['pagin-change'],
+  setup (props, context) {
+    const $router = useRouter()
     const isShowAll = ref<boolean>(false)
     const isLoading = ref<boolean>(false)
-    const activeCat = computed(() => playlistStore.activeCat)
+    const currentPlaylists = ref<PlayListItem[]>([])
     const paginData = reactive({
       currentPage: 1,
       pageCount: 0
@@ -28,9 +30,8 @@ export default defineComponent({
         sub: []
       }
     })
-    const currentPlaylists = ref<PlayListItem[]>([])
+    const activeCat = computed<string>(() => playlistStore.activeCat)
     const currentBoutiquelists = computed<PlayListItem[]>(() => playlistStore.currentBoutiquelists)
-    const $router = useRouter()
     const handleToggleAllList = () => {
       isShowAll.value = !isShowAll.value
     }
@@ -38,6 +39,7 @@ export default defineComponent({
       playlistStore.CHANGE_ACTIVECAT(newCat)
       getPlaylists()
     }
+    // 渲染分类列表
     const renderCategoryList = () => {
       const categories: Array<string> = Object.values(category.allCategory.categories)
       const iconArray: Array<string> = ['icon-languages', 'icon-style', 'icon-scene', 'icon-emotional', 'icon-theme-list']
@@ -53,6 +55,7 @@ export default defineComponent({
         </li>
       ))
     }
+    // 渲染分类列表项
     const renderCategoryListItem = (key: number) => {
       const list = category.allCategory.sub.filter(item => {
         return item.category === key
@@ -88,6 +91,7 @@ export default defineComponent({
       ))
     }
     const handlePaginChange = (cur: number) => {
+      context.emit('pagin-change')
       paginData.currentPage = cur
       getPlaylists()
     }

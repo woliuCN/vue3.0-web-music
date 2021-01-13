@@ -37,7 +37,7 @@
 
 <script lang="ts">
 import NewCourier from './components/NewCourier.vue'
-import { defineComponent, reactive, ref, toRefs } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import { LASTEST_CATEGORYS } from '@/utils/constant'
 import { getTopSongs } from '@/api/latest/index'
 export default defineComponent({
@@ -48,24 +48,24 @@ export default defineComponent({
     const isLoading = ref<boolean>(false)
     const latestMusicCategorys = ref(LASTEST_CATEGORYS)
     const categroy = ref<number>(0)
-    const data = reactive({
-      topSongs: []
-    })
+    const topSongs = ref<Song[]>([])
     const handleChangeCategory = (type: number) => {
       categroy.value = type
       getNewCourierSongs()
     }
     const getNewCourierSongs = async () => {
       isLoading.value = true
-      data.topSongs = await getTopSongs(categroy.value)
+      topSongs.value = await getTopSongs(categroy.value)
       isLoading.value = false
     }
-    getNewCourierSongs()
+    onMounted(() => {
+      getNewCourierSongs()
+    })
     return {
       isLoading,
       categroy,
+      topSongs,
       latestMusicCategorys,
-      ...toRefs(data),
       handleChangeCategory
     }
   }

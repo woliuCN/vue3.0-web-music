@@ -14,7 +14,12 @@
           />
         </tab-pane>
         <tab-pane label="歌手" name="artists">
-          <div class="artist" v-for="artist in artists" :key="artist.id" @click="handleShowDetail(`/singer/${artist.id}`)">
+          <div
+            class="artist"
+            v-for="artist in artists"
+            :key="artist.id"
+            @click="handleShowDetail(`/singer/${artist.id}`)"
+          >
             <div class="artist-info">
               <img :src="artist.picUrl" />
               <span>{{ artist.name }}</span>
@@ -30,7 +35,12 @@
           />
         </tab-pane>
         <tab-pane label="专辑" name="albums">
-          <div class="album" v-for="album in albums" :key="album.id" @click="handleShowDetail(`/album/${album.id}`)">
+          <div
+            class="album"
+            v-for="album in albums"
+            :key="album.id"
+            @click="handleShowDetail(`/album/${album.id}`)"
+          >
             <img :src="album.picUrl" />
             <span class="album-name">{{ album.name }}</span>
             <span class="album-artist">{{ album.artist }}</span>
@@ -45,20 +55,23 @@
         </tab-pane>
         <tab-pane label="视频" name="videos">
           <div class="videos">
-            <div class="video" v-for="video in videos" :key="video.id" @click="handleShowDetail(`/video/${video.id}`, true)">
+            <div
+              class="video"
+              v-for="video in videos"
+              :key="video.id"
+              @click="handleShowDetail(`/video/${video.id}`, true)"
+            >
               <div class="video-cover">
-                <img
-                  :src="video.coverUrl"
-                />
+                <img :src="video.coverUrl" />
                 <div class="cover-count">
                   <i class="iconfont icon-playlist-play"></i>
-                  <span>{{video.playCount}}</span>
+                  <span>{{ video.playCount }}</span>
                 </div>
-                <div class="cover-duration">{{video.durationStr}}</div>
+                <div class="cover-duration">{{ video.durationStr }}</div>
               </div>
               <div>
-                <p class="name">{{video.name}}</p>
-                <div class="creator">by {{video.nickName}}</div>
+                <p class="name">{{ video.name }}</p>
+                <div class="creator">by {{ video.nickName }}</div>
               </div>
             </div>
           </div>
@@ -99,16 +112,29 @@
 </template>
 <script lang="ts">
 import SongList from '@/components/song-list/Index.vue'
-import { defineComponent, reactive, ref, toRefs, computed } from 'vue'
+import {
+  defineComponent,
+  reactive,
+  ref,
+  toRefs,
+  computed,
+  onMounted
+} from 'vue'
 import { getSearchInfo } from '@/api/search/index'
-import { useRoute, useRouter, onBeforeRouteUpdate, RouteLocationNormalized } from 'vue-router'
+import {
+  useRoute,
+  useRouter,
+  onBeforeRouteUpdate,
+  RouteLocationNormalized
+} from 'vue-router'
 import { SEARCH_TYPE } from '@/utils/constant'
 import { playerStore } from '@/store/modules/player'
 export default defineComponent({
   components: {
     SongList
   },
-  setup () {
+  emits: ['pagin-change'],
+  setup (props, context) {
     const $route = useRoute()
     const $router = useRouter()
     const activeName = ref<string>('songs')
@@ -140,6 +166,7 @@ export default defineComponent({
     }
 
     const handlePaginChange = (currentPage: number) => {
+      context.emit('pagin-change')
       pageData.currentPage = currentPage
       _getSearchInfo($route.params.keyWords as string)
     }
@@ -153,11 +180,15 @@ export default defineComponent({
       }
       $router.push(url)
     }
+
     onBeforeRouteUpdate((to: RouteLocationNormalized) => {
       pageData.currentPage = 1
       _getSearchInfo(to.params.keyWords as string)
     })
-    _getSearchInfo($route.params.keyWords as string)
+
+    onMounted(() => {
+      _getSearchInfo($route.params.keyWords as string)
+    })
     return {
       activeName,
       typeToZh,
@@ -320,13 +351,14 @@ export default defineComponent({
       }
     }
 
-    .name,.creator {
-        line-height: 1.5;
-        @include multipleNoWrap(1);
+    .name,
+    .creator {
+      line-height: 1.5;
+      @include multipleNoWrap(1);
     }
 
     .creator {
-        color: #ddd;
+      color: #ddd;
     }
 
     &:nth-child(4n) {

@@ -145,8 +145,8 @@ export default defineComponent({
     return {
       activeName,
       isLoading,
-      ...toRefs(data),
-      handleShowSimi
+      handleShowSimi,
+      ...toRefs(data)
     }
   }
 })

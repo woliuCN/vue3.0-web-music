@@ -1,6 +1,6 @@
 <template>
-  <div class="details" v-loading="isLoading">
-    <div class="details-top">
+  <div class="detail" v-loading="isLoading">
+    <div class="detail-top">
       <div class="top-cover">
         <img :src="detailInfo.coverImgUrl" />
         <div class="mask"></div>
@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <div class="details-bottom">
+    <div class="detail-bottom">
       <tabs v-model="activeName">
         <tab-pane label="歌曲列表" name="songList">
           <song-list :songs="detailInfo.songs" />
@@ -70,60 +70,74 @@
           </div>
         </tab-pane>
         <tab-pane label="专辑详情" name="description">
-            <div class="bottom-description">
-                <h1 class="title">专辑介绍</h1>
-                <p class="item" v-for="(item, index) in detailInfo.description" :key="'desc'+ index">
-                    {{item}}
-                </p>
-            </div>
+          <div class="bottom-description">
+            <h1 class="title">专辑介绍</h1>
+            <p
+              class="item"
+              v-for="(item, index) in detailInfo.description"
+              :key="'desc' + index"
+            >
+              {{ item }}
+            </p>
+          </div>
         </tab-pane>
       </tabs>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref, reactive, toRefs } from 'vue'
 import SongList from '@/components/song-list/Index.vue'
-import { onBeforeRouteUpdate, RouteLocationNormalized, useRoute } from 'vue-router'
-import { getAlbumDetails, getAlbumComments } from '@/api/album/index'
+import { defineComponent, onMounted, ref, reactive, toRefs } from 'vue'
+import {
+  onBeforeRouteUpdate,
+  RouteLocationNormalized,
+  useRoute
+} from 'vue-router'
+import {
+  AlbumDetail,
+  getAlbumDetail,
+  getAlbumComments
+} from '@/api/album/index'
 export default defineComponent({
   components: {
     SongList
   },
-  setup () {
+  emits: ['pagin-change'],
+  setup (props, context) {
+    const $route = useRoute()
+    let id = Number($route.params.id)
     const isLoading = ref<boolean>(false)
     const activeName = ref<string>('songList')
-    const detailInfo = ref<object>({})
-    const data = reactive({
+    const detailInfo = ref<Partial<AlbumDetail>>({})
+    const commentData = reactive({
       hotComments: [],
       comments: [],
       total: 0,
       pageCount: 0,
       currentPage: 1
     })
-    const $route = useRoute()
-    let id = Number($route.params.id)
-    const handlePaginChange = (cur: number) => {
-      data.currentPage = cur
-      getComments()
-    }
     const getComments = async () => {
-      isLoading.value = true
-      const { hotComments, comments, total, pageCount } = await getAlbumComments(
-        id,
-        data.currentPage
-      )
-      data.hotComments = hotComments
-      data.comments = comments
-      data.total = total
-      data.pageCount = pageCount
-      isLoading.value = false
+      const {
+        hotComments,
+        comments,
+        total,
+        pageCount
+      } = await getAlbumComments(id, commentData.currentPage)
+      commentData.hotComments = hotComments
+      commentData.comments = comments
+      commentData.total = total
+      commentData.pageCount = pageCount
     }
     const init = async () => {
       isLoading.value = true
-      detailInfo.value = await getAlbumDetails(id)
+      detailInfo.value = await getAlbumDetail(id)
       await getComments()
       isLoading.value = false
+    }
+    const handlePaginChange = (cur: number) => {
+      context.emit('pagin-change')
+      commentData.currentPage = cur
+      getComments()
     }
     onBeforeRouteUpdate((to: RouteLocationNormalized) => {
       id = Number(to.params.id)
@@ -137,7 +151,7 @@ export default defineComponent({
       activeName,
       detailInfo,
       handlePaginChange,
-      ...toRefs(data)
+      ...toRefs(commentData)
     }
   }
 })
@@ -148,8 +162,8 @@ export default defineComponent({
   padding: 0 2.5%;
 }
 
-.details {
-  .details-top {
+.detail {
+  .detail-top {
     display: flex;
     align-items: flex-start;
     padding: 2% 2.5%;
@@ -271,7 +285,7 @@ export default defineComponent({
     }
   }
 
-  .details-bottom {
+  .detail-bottom {
     .bottom-comment {
       padding: 2% 2.5%;
 
@@ -315,19 +329,19 @@ export default defineComponent({
     }
 
     .bottom-description {
-        padding: 2% 2.5%;
-        font-size: 14px;
-        line-height: 2;
+      padding: 2% 2.5%;
+      font-size: 14px;
+      line-height: 2;
 
-        .title {
-            font-weight: bold;
-        }
+      .title {
+        font-weight: bold;
+      }
 
-        .item {
-            font-weight: 200;
-            color: #666;
-            text-indent: 2em;
-        }
+      .item {
+        font-weight: 200;
+        color: #666;
+        text-indent: 2em;
+      }
     }
   }
 }

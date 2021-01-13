@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios'
-import { formatTime } from '@/utils/util'
+import { formatDate } from '@/utils/util'
 import { COMMENT_LIMIT } from '@/utils/constant'
 
 export const convertComments = (res: AxiosResponse<any>) => {
@@ -14,7 +14,7 @@ export const convertComments = (res: AxiosResponse<any>) => {
             name: item.user.nickname,
             commentId: item.commentId,
             avatarUrl: item.user.avatarUrl,
-            time: formatTime(item.time),
+            time: formatDate(item.time, 'YYYY年MM月dd日 hh:mm'),
             likedCount: item.likedCount,
             content: item.content
           }
@@ -25,7 +25,7 @@ export const convertComments = (res: AxiosResponse<any>) => {
         name: comment.user.nickname,
         commentId: comment.commentId,
         avatarUrl: comment.user.avatarUrl,
-        time: formatTime(comment.time),
+        time: formatDate(comment.time, 'YYYY年MM月dd日 hh:mm'),
         likedCount: comment.likedCount,
         content: comment.content,
         beReplied
@@ -42,7 +42,7 @@ export const convertComments = (res: AxiosResponse<any>) => {
           name: item.user.nickname,
           commentId: item.commentId,
           avatarUrl: item.user.avatarUrl,
-          time: formatTime(item.time),
+          time: formatDate(item.time, 'YYYY年MM月dd日 hh:mm'),
           likedCount: item.likedCount,
           content: item.content
         }
@@ -53,7 +53,7 @@ export const convertComments = (res: AxiosResponse<any>) => {
       name: comment.user.nickname,
       commentId: comment.commentId,
       avatarUrl: comment.user.avatarUrl,
-      time: formatTime(comment.time),
+      time: formatDate(comment.time, 'YYYY年MM月dd日 hh:mm'),
       likedCount: comment.likedCount,
       content: comment.content,
       beReplied

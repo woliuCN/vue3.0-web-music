@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios'
-import { getAlbumAllCount } from './index'
+import { AlbumDetail, getAlbumAllCount } from './index'
 import { formatDate, formatDuration, translateCount } from '@/utils/util'
 
-export const convertDetails = async (res: AxiosResponse<any>) => {
+export const convertDetail = async (res: AxiosResponse<any>): Promise<AlbumDetail> => {
   const { songs, album } = res.data
   const converSongs: Song[] = songs.map((song: any) => {
     return {
@@ -24,7 +24,7 @@ export const convertDetails = async (res: AxiosResponse<any>) => {
     name: album.name,
     artistId: album.artist.id,
     artistName: album.artist.name,
-    publishTime: formatDate(album.publishTime),
+    publishTime: formatDate(album.publishTime, 'YYYY-MM-dd'),
     subscribedCount: translateCount(subCount),
     shareCount: translateCount(shareCount),
     coverImgUrl: album.picUrl,

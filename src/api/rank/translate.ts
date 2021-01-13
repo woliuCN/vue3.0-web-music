@@ -57,7 +57,7 @@ export const convertRanksInfo = async (res: AxiosResponse<any>) => {
       id: item.id,
       coverImgUrl: item.coverImgUrl,
       name: item.name,
-      updateTime: formatDate(item.trackUpdateTime, false),
+      updateTime: formatDate(item.trackUpdateTime, 'MM-dd'),
       playCount: translateCount(item.playCount),
       backgroundImgUrl,
       songs
@@ -70,7 +70,7 @@ export const convertRanksInfo = async (res: AxiosResponse<any>) => {
     singerRank: {
       coverImgUrl: artistToplist.coverUrl,
       backgroundImgUrl: artists[0].picUrl,
-      updateTime: formatDate(updateTime, false),
+      updateTime: formatDate(updateTime, 'MM-dd'),
       artists
     }
   }

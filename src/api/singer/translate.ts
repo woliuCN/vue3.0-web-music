@@ -54,7 +54,7 @@ export const convertAlbum = (res: AxiosResponse<any>) => {
       id: album.id,
       name: album.name,
       picUrl: album.picUrl,
-      publishTime: formatDate(album.publishTime)
+      publishTime: formatDate(album.publishTime, 'YYYY-MM-dd')
     }
   })
 }

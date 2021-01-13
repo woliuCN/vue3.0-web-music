@@ -6,7 +6,7 @@
     @after-leave="handleAfterLeave"
     :css="false"
   >
-    <div class="normal-player" v-if="isFull">
+    <div class="normal-player" ref="playerRef" v-if="isFull">
       <div class="player-top">
         <div class="cd-container">
           <img
@@ -119,11 +119,11 @@
 
 <script lang="ts">
 import InlineLyric from '@/components/inline-lyric/Index'
-import animations from 'create-keyframe-animation'
-import { playerStore } from '@/store/modules/player'
+import usePlayerAnimation from '@/hooks/player/userPlayerAnimation'
 import { defineComponent, PropType, computed, ref } from 'vue'
-import { getPosAndScale } from './utils'
 import { useRouter } from 'vue-router'
+import { playerStore } from '@/store/modules/player'
+import { scrollTop } from '@/utils/animation'
 export default defineComponent({
   props: {
     isFull: {
@@ -138,11 +138,13 @@ export default defineComponent({
   setup (props, context) {
     const $router = useRouter()
     const currentPage = ref<number>(1)
+    const playerRef = ref<HTMLDivElement | null>(null)
     const currentSong = computed<Song>(() => playerStore.currentSong)
     const simiSongs = computed<Song[]>(() => playerStore.simiSongs)
     const isPlaying = computed<boolean>(() => playerStore.playing)
     const songCommentInfo = computed(() => playerStore.currentSongCommentInfo)
     const handlePaginChange = (cur: number) => {
+      scrollTop(playerRef, 450)
       currentPage.value = cur
       playerStore.getSongCommentInfo(cur)
     }
@@ -157,53 +159,9 @@ export default defineComponent({
       context.emit('change-player-status')
       $router.push(url)
     }
-    const handleEnter = (el: HTMLElement, done: () => void) => {
-      const { x, y, scale } = getPosAndScale()
-      const animation = {
-        0: {
-          transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`
-        },
-        100: {
-          transform: 'translate3d(0, 0, 0) scale(1)'
-        }
-      }
-      animations.registerAnimation({
-        name: 'enter',
-        animation,
-        presets: {
-          duration: 300,
-          easing: 'linear'
-        }
-      })
-      animations.runAnimation(el, 'enter', done)
-    }
-    const handleAfterEnter = () => {
-      animations.unregisterAnimation('enter')
-    }
-    const handleLeave = (el: HTMLElement, done: () => void) => {
-      const { x, y, scale } = getPosAndScale()
-      const animation = {
-        0: {
-          transform: 'translate3d(0, 0, 0) scale(1)'
-        },
-        100: {
-          transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`
-        }
-      }
-      animations.registerAnimation({
-        name: 'leave',
-        animation,
-        presets: {
-          duration: 300,
-          easing: 'linear'
-        }
-      })
-      animations.runAnimation(el, 'leave', done)
-    }
-    const handleAfterLeave = () => {
-      animations.unregisterAnimation('leave')
-    }
+    const { handleEnter, handleAfterEnter, handleLeave, handleAfterLeave } = usePlayerAnimation()
     return {
+      playerRef,
       isPlaying,
       currentPage,
       currentSong,

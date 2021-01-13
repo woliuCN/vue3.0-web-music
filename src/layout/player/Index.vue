@@ -25,9 +25,9 @@
 <script lang="ts">
 import MiniPlayer from './MiniPlayer.vue'
 import NormalPlayer from './NormalPlayer.vue'
-import { computed, defineComponent, onMounted, reactive, ref, toRefs, watch } from 'vue'
-import { playerStore } from '@/store/modules/player'
 import { MODE } from '@/utils/constant'
+import { playerStore } from '@/store/modules/player'
+import { computed, defineComponent, onMounted, reactive, ref, toRefs, watch } from 'vue'
 
 export type Duration = {
   startTime: number;
@@ -110,10 +110,12 @@ export default defineComponent({
         : duration.startTime / (duration.endTime)
       getCurrentLyric(e.target.currentTime)
     }
+    // 手动改变进度条触发事件
     const handleChangePercent = (percent: number) => {
       const lyrics = playerStore.lyrics
       const currentTime = (percent * duration.endTime) / 1000
       audioRef.value.currentTime = currentTime
+      // 重新计算歌词到第几行了
       for (let index = 0; index < lyrics.length; index++) {
         if (lyrics[index].time >= currentTime) {
           playerStore.CHANGE_LINENO(index)
@@ -155,12 +157,6 @@ export default defineComponent({
     }
 
     const getCurrentLyric = (currentTime: number) => {
-      // const lyrics = playerStore.lyrics
-      // if (!lyrics || !lyrics[lineNo.value]) return
-      // if (lyrics[lineNo.value].time <= currentTime) {
-      //   playerStore.CHANGE_LYRIC(lyrics[lineNo.value].text)
-      //   lineNo.value = lineNo.value + 1
-      // }
       const lyrics = playerStore.lyrics
       const lineNo = playerStore.currentLineNo
       if (!lyrics || !lyrics[lineNo]) return
@@ -176,8 +172,8 @@ export default defineComponent({
     })
     return {
       isFull,
-      isShowMiniPlayer,
       audioRef,
+      isShowMiniPlayer,
       handleOrder,
       handleEnd,
       handleErr,

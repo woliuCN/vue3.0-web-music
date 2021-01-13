@@ -75,7 +75,7 @@
 
 <script lang="ts">
 import MvItem from '@/components/mv-item/Index.vue'
-import { defineComponent, reactive, ref, toRefs } from 'vue'
+import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
 import {
   MV_AREAS,
   MV_ORDERS,
@@ -86,7 +86,8 @@ export default defineComponent({
   components: {
     MvItem
   },
-  setup () {
+  emits: ['pagin-change'],
+  setup (props, context) {
     const isLoading = ref<boolean>(false)
     const mvList = ref<Mv[]>([])
     const selectData = reactive({
@@ -115,10 +116,13 @@ export default defineComponent({
       _getMvList()
     }
     const handlePaginChange = (cur: number) => {
+      context.emit('pagin-change')
       paginData.currentPage = cur
       _getMvList()
     }
-    _getMvList()
+    onMounted(() => {
+      _getMvList()
+    })
     return {
       isLoading,
       mvList,

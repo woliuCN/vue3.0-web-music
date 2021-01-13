@@ -3,6 +3,24 @@ import { convertComments } from '../translate'
 import { COMMENT_LIMIT, PLAYLIST_LIMIT } from '@/utils/constant'
 import { convertCatList, convertPlayLists, convertDetails } from './translate'
 
+export interface PlaylistDetail {
+  id: number;
+  name: string;
+  coverImgUrl: string;
+  userId: number;
+  nickname: string;
+  avatarUrl: string;
+  tags: string;
+  playCount: number | string;
+  subscribedCount: number | string;
+  shareCount: number | string;
+  trackCount: number;
+  commentCount: number;
+  createTime: string;
+  subDescription: string;
+  description: string;
+  songs: Song[];
+}
 const REQUEST_URL = {
   detail: '/playlist/detail',
   comment: '/comment/playlist',

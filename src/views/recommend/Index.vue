@@ -1,34 +1,51 @@
 <template>
   <div class="recommend" v-loading="isLoading">
-    <Banners v-if="banners.length" :banners="banners"/>
+    <Banners v-if="banners.length" :banners="banners" />
     <h1 class="subtitle" @click="handleShowMore('/playList')">
       <span>推荐歌单</span>
       <i class="iconfont icon-right"></i>
     </h1>
     <div class="recommend-playlist">
-      <play-list-item v-for="item in playLists" :playListItem="item" :key="item.id"/>
+      <play-list-item
+        v-for="item in playLists"
+        :playListItem="item"
+        :key="item.id"
+      />
     </div>
     <h1 class="subtitle">
       <span>独家放送</span>
       <i class="iconfont icon-right"></i>
     </h1>
     <div class="recommend-ownersend">
-      <owner-send-item v-for="item in ownerSendLists" :ownerSendItem="item" :key="item.id" />
+      <owner-send-item
+        v-for="item in ownerSendLists"
+        :ownerSendItem="item"
+        :key="item.id"
+      />
     </div>
     <h1 class="subtitle" @click="handleShowMore('/newMusic')">
       <span>最新音乐</span>
       <i class="iconfont icon-right"></i>
     </h1>
     <div class="recommend-latestmusic">
-      <latest-music-item v-for="(item, index) in LatestSongLists" :latestMusicItem="item" :key="item.id" @play="handlePlaySong(index)"/>
+      <latest-music-item
+        v-for="(item, index) in LatestSongLists"
+        :latestMusicItem="item"
+        :key="item.id"
+        @play="handlePlaySong(index)"
+      />
     </div>
     <h1 class="subtitle" @click="handleShowMore('/mvList')">
       <span>推荐MV</span>
       <i class="iconfont icon-right"></i>
     </h1>
     <div class="recommend-mv">
-      <div v-for="item in recomendMvLists.slice(0,3)"  :key="item.id"  style="flex: 0 0 32%;">
-        <mv-item :mvItem="item"/>
+      <div
+        v-for="item in recomendMvLists.slice(0, 3)"
+        :key="item.id"
+        style="flex: 0 0 32%;"
+      >
+        <mv-item :mvItem="item" />
       </div>
     </div>
   </div>
@@ -41,7 +58,13 @@ import MvItem from '@/components/mv-item/Index.vue'
 import OwnerSendItem from './components/OwnerSendItem.vue'
 import LatestMusicItem from './components/LatestMusicItem.vue'
 import { defineComponent, onMounted, ref } from 'vue'
-import { getBanners, getRecommendPlayLists, getOwnerSendLists, getLatestSongLists, getRecommendMvLists } from '@/api/recommend/index'
+import {
+  getBanners,
+  getRecommendPlayLists,
+  getOwnerSendLists,
+  getLatestSongLists,
+  getRecommendMvLists
+} from '@/api/recommend/index'
 import { useRouter } from 'vue-router'
 import { playerStore } from '@/store/modules/player'
 export default defineComponent({
@@ -53,13 +76,13 @@ export default defineComponent({
     LatestMusicItem
   },
   setup () {
+    const $router = useRouter()
     const isLoading = ref<boolean>(false)
     const banners = ref<string[]>([])
     const playLists = ref<PlayListItem[]>([])
     const ownerSendLists = ref<OwnerSendItem[]>([])
     const LatestSongLists = ref<Song[]>([])
     const recomendMvLists = ref<Mv[]>([])
-    const $router = useRouter()
     const init = async () => {
       isLoading.value = true
       try {

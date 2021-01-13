@@ -1,9 +1,10 @@
 import { AxiosResponse } from 'axios'
 import { getSongs } from '../common'
 import { PLAYLIST_LIMIT } from '@/utils/constant'
-import { formatTime, formatDate, formatDuration, translateCount } from '@/utils/util'
+import { formatDate, formatDuration, translateCount } from '@/utils/util'
+import { PlaylistDetail } from '.'
 
-export const convertDetails = async (res: AxiosResponse<any>) => {
+export const convertDetails = async (res: AxiosResponse<any>): Promise<PlaylistDetail> => {
   const { id, name, creator, trackIds, coverImgUrl, createTime, trackCount, playCount, subscribedCount, shareCount, commentCount, tags, description } = res.data.playlist
   const { userId, nickname, avatarUrl } = creator
   const ids = trackIds.map((track: any) => {
@@ -35,7 +36,7 @@ export const convertDetails = async (res: AxiosResponse<any>) => {
     trackCount,
     commentCount,
     songs: converSongs,
-    createTime: formatDate(createTime),
+    createTime: formatDate(createTime, 'YYYY-MM-dd'),
     playCount: translateCount(playCount),
     subscribedCount: translateCount(subscribedCount),
     shareCount: translateCount(shareCount),

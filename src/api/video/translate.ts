@@ -62,7 +62,7 @@ export const convertVideodetail = async (res: AxiosResponse<any>) => {
     creatorName: data.creator.nickname,
     avatarUrl: data.creator.avatarUrl,
     posterUrl: data.coverUrl,
-    publishTime: formatDate(data.publishTime),
+    publishTime: formatDate(data.publishTime, 'YYYY-MM-dd'),
     subCount: data.subscribeCount,
     shareCount: data.shareCount,
     playCount: translateCount(data.playTime),

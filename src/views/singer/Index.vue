@@ -13,8 +13,8 @@
             <span
               class="conditions-text"
               :class="item.value === area ? 'active' : ''"
-              @click="handleChangeConditons('area',item.value)"
-              >
+              @click="handleChangeConditons('area', item.value)"
+            >
               {{ item.label }}
             </span>
           </div>
@@ -32,10 +32,10 @@
             <span
               class="conditions-text"
               :class="{ active: item.value === type }"
-              @click="handleChangeConditons('type',item.value)"
-              >
+              @click="handleChangeConditons('type', item.value)"
+            >
               {{ item.label }}
-              </span>
+            </span>
           </div>
         </div>
       </div>
@@ -50,21 +50,24 @@
             <span
               class="conditions-text"
               :class="item.value === alpha ? 'active' : ''"
-              @click="handleChangeConditons('alpha',item.value)"
-              >
+              @click="handleChangeConditons('alpha', item.value)"
+            >
               {{ item.label }}
-              </span>
+            </span>
           </div>
         </div>
       </div>
     </div>
     <div class="singer-list" v-loading="isLoading">
-      <div class="list-item" v-for="item in singerLists" :key="item.id" @click="handleShowDetail(item.id)">
-        <img
-          :src="item.picUrl"
-        />
+      <div
+        class="list-item"
+        v-for="item in singerLists"
+        :key="item.id"
+        @click="handleShowDetail(item.id)"
+      >
+        <img :src="item.picUrl" />
         <div class="item-bottom">
-          <span>{{item.name}}</span>
+          <span>{{ item.name }}</span>
           <i class="iconfont icon-user"></i>
         </div>
       </div>
@@ -73,12 +76,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, reactive, ref, toRefs } from 'vue'
 import {
-  SINGER_AREAS,
-  SINGER_CATEGORYS,
-  ALPHATYPES
-} from '@/utils/constant'
+  defineComponent,
+  onMounted,
+  onUnmounted,
+  reactive,
+  ref,
+  toRefs
+} from 'vue'
+import { SINGER_AREAS, SINGER_CATEGORYS, ALPHATYPES } from '@/utils/constant'
 import { useRouter } from 'vue-router'
 import { getSingerLists } from '@/api/singer/index'
 import { debounce } from '@/utils/util'
@@ -101,7 +107,12 @@ export default defineComponent({
     const $router = useRouter()
     const getCurrentSingerLists = async () => {
       isLoading.value = true
-      const { singers, more } = await getSingerLists(conditons.type, conditons.area, conditons.alpha, conditons.currentPage)
+      const { singers, more } = await getSingerLists(
+        conditons.type,
+        conditons.area,
+        conditons.alpha,
+        conditons.currentPage
+      )
       if (more) {
         conditons.currentPage = conditons.currentPage + 1
         singerLists.value.push(...singers)
@@ -121,7 +132,7 @@ export default defineComponent({
       const scrollHeight = dom.scrollHeight
       const clientHeight = dom.clientHeight
       // 当整个滚动条的实际高度减去移动上去的高度加上块的高度小于十的时候就是到底了,即可以请求数据
-      if ((scrollHeight - clientHeight - scrollTop) < 10 && conditons.more) {
+      if (scrollHeight - clientHeight - scrollTop < 10 && conditons.more) {
         getCurrentSingerLists()
       }
     }
@@ -130,7 +141,11 @@ export default defineComponent({
     }
     onMounted(() => {
       getCurrentSingerLists()
-      on(document.getElementById('mainPage'), 'scroll', debounce(scrollCallback, 1000))
+      on(
+        document.getElementById('mainPage'),
+        'scroll',
+        debounce(scrollCallback, 1000)
+      )
     })
     onUnmounted(() => {
       off(document.getElementById('mainPage'), 'scroll')
@@ -142,9 +157,9 @@ export default defineComponent({
       alphaTypes,
       singerLists,
       containerRef,
-      ...toRefs(conditons),
       handleChangeConditons,
-      handleShowDetail
+      handleShowDetail,
+      ...toRefs(conditons)
     }
   }
 })

@@ -32,8 +32,8 @@ import { playlistStore } from '@/store/modules/playlist'
 import { useRouter } from 'vue-router'
 export default defineComponent({
   setup () {
-    const currentBoutiquelists = computed<PlayListItem[]>(() => playlistStore.currentBoutiquelists)
     const $router = useRouter()
+    const currentBoutiquelists = computed<PlayListItem[]>(() => playlistStore.currentBoutiquelists)
     const handleShowDetail = (id: number) => {
       $router.push(`/playList/${id}`)
     }

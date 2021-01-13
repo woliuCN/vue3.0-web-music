@@ -1,21 +1,16 @@
 <template>
   <div class="details" v-loading="isLoading">
     <div class="details-top">
-      <img
-        class="top-cover"
-        :src="detailInfo.coverImgUrl"
-      />
+      <img class="top-cover" :src="detailInfo.coverImgUrl" />
       <div class="top-content">
         <h1 class="content-title">
           <span>歌单</span>
-          {{detailInfo.name}}
+          {{ detailInfo.name }}
         </h1>
         <div class="content-provider">
-          <img
-            :src="detailInfo.avatarUrl"
-          />
-          <span class="provider-name">{{detailInfo.nickname}}</span>
-          <span>{{detailInfo.createTime}}创建</span>
+          <img :src="detailInfo.avatarUrl" />
+          <span class="provider-name">{{ detailInfo.nickname }}</span>
+          <span>{{ detailInfo.createTime }}创建</span>
         </div>
         <div class="content-options">
           <div class="options-item light">
@@ -25,11 +20,11 @@
           </div>
           <div class="options-item">
             <i class="iconfont icon-player-collect"></i>
-            <span>收藏({{detailInfo.subscribedCount}})</span>
+            <span>收藏({{ detailInfo.subscribedCount }})</span>
           </div>
           <div class="options-item">
             <i class="iconfont icon-share"></i>
-            <span>分享({{detailInfo.shareCount}})</span>
+            <span>分享({{ detailInfo.shareCount }})</span>
           </div>
           <div class="options-item">
             <i class="iconfont icon-player-download"></i>
@@ -38,16 +33,19 @@
         </div>
         <div class="content-tags" v-if="detailInfo.tags">
           <span class="label">标签 : </span>
-          <span class="tag">{{detailInfo.tags}}</span>
+          <span class="tag">{{ detailInfo.tags }}</span>
         </div>
         <div class="content-count">
-          <span class="label">歌曲 : </span> {{detailInfo.trackCount}}   &nbsp;
-          <span class="label">播放 : </span> {{detailInfo.playCount}}
+          <span class="label">歌曲 : </span> {{ detailInfo.trackCount }} &nbsp;
+          <span class="label">播放 : </span> {{ detailInfo.playCount }}
         </div>
         <div class="content-desc">
           <span class="label">简介 : </span>
-          <i :class="`iconfont ${showDescMore ? 'icon-up' : 'icon-down-2'}`"  @click="showDescMore=!showDescMore"></i>
-          {{detailInfo.subDescription}}<span v-if="!showDescMore">...</span>
+          <i
+            :class="`iconfont ${showDescMore ? 'icon-up' : 'icon-down-2'}`"
+            @click="showDescMore = !showDescMore"
+          ></i>
+          {{ detailInfo.subDescription }}<span v-if="!showDescMore">...</span>
           <p v-if="showDescMore" v-html="detailInfo.description"></p>
         </div>
       </div>
@@ -55,9 +53,12 @@
     <div class="details-bottom">
       <tabs v-model="activeName">
         <tab-pane label="歌曲列表" name="songList">
-          <song-list :songs="detailInfo.songs"/>
+          <song-list :songs="detailInfo.songs" />
         </tab-pane>
-        <tab-pane :label="`评论(${detailInfo.commentCount|| 0})`" name="songComment">
+        <tab-pane
+          :label="`评论(${detailInfo.commentCount || 0})`"
+          name="songComment"
+        >
           <div class="bottom-comment">
             <div class="comment-box">
               <textarea maxlength="140" rows="4" class="box-input"></textarea>
@@ -70,7 +71,11 @@
                 <div class="options-right">评论</div>
               </div>
             </div>
-            <comments :hotComments="hotComments" :comments="comments" :total="total"/>
+            <comments
+              :hotComments="hotComments"
+              :comments="comments"
+              :total="total"
+            />
             <pagin
               :pageCount="pageCount"
               :pagerCount="9"
@@ -87,40 +92,49 @@
 import { defineComponent, onMounted, ref, reactive, toRefs } from 'vue'
 import SongList from '@/components/song-list/Index.vue'
 import { useRoute } from 'vue-router'
-import { getPlayListDetails, getPlayListComments } from '@/api/playlist/index'
+import {
+  PlaylistDetail,
+  getPlayListDetails,
+  getPlayListComments
+} from '@/api/playlist/index'
 export default defineComponent({
   components: {
     SongList
   },
-  setup () {
+  emits: ['pagin-change'],
+  setup (props, context) {
     const isLoading = ref<boolean>(false)
     const activeName = ref<string>('songList')
     const showDescMore = ref<boolean>(false)
-    const detailInfo = ref<object>({})
-    const data = reactive({
+    const detailInfo = ref<Partial<PlaylistDetail>>({})
+    const commentData = reactive({
       hotComments: [],
       comments: [],
       total: 0,
-      pageCount: 0
+      pageCount: 0,
+      currentPage: 1
     })
-    const currentPage = ref<number>(1)
     const $route = useRoute()
     const id = Number($route.params.id)
     const handlePaginChange = (cur: number) => {
-      currentPage.value = cur
+      context.emit('pagin-change')
+      commentData.currentPage = cur
       getComments()
     }
     const handleToggleShowDescMore = () => {
       showDescMore.value = !showDescMore.value
     }
     const getComments = async () => {
-      isLoading.value = true
-      const { hotComments, comments, total, pageCount } = await getPlayListComments(id, currentPage.value)
-      data.hotComments = hotComments
-      data.comments = comments
-      data.total = total
-      data.pageCount = pageCount
-      isLoading.value = false
+      const {
+        hotComments,
+        comments,
+        total,
+        pageCount
+      } = await getPlayListComments(id, commentData.currentPage)
+      commentData.hotComments = hotComments
+      commentData.comments = comments
+      commentData.total = total
+      commentData.pageCount = pageCount
     }
     const init = async () => {
       isLoading.value = true
@@ -135,11 +149,10 @@ export default defineComponent({
       isLoading,
       activeName,
       showDescMore,
-      currentPage,
       detailInfo,
-      ...toRefs(data),
       handlePaginChange,
-      handleToggleShowDescMore
+      handleToggleShowDescMore,
+      ...toRefs(commentData)
     }
   }
 })
@@ -254,7 +267,9 @@ export default defineComponent({
         }
       }
 
-      .content-tags,.content-desc,.content-count {
+      .content-tags,
+      .content-desc,
+      .content-count {
         font-size: 13px;
         line-height: 2;
         color: #555;
@@ -287,7 +302,7 @@ export default defineComponent({
     }
   }
 
-  .details-bottom{
+  .details-bottom {
     .bottom-comment {
       padding: 2% 2.5%;
 
@@ -327,7 +342,6 @@ export default defineComponent({
             border-radius: 25px;
           }
         }
-
       }
     }
   }

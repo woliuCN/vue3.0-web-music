@@ -1,14 +1,25 @@
 <template>
   <div class="rank" v-loading="isLoading">
-      <h1 class="rank-type">官方榜</h1>
-      <div class="rank-offical">
-        <official-item v-for="item in officalRanks" :officalRank="item" :key="item.id"/>
-        <singer-rank :singerRank="singerRank" v-if="Object.keys(singerRank).length"/>
-      </div>
-      <h1 class="rank-type">全球榜</h1>
-      <div class="rank-global">
-        <global-item v-for="item in globalRanks" :globalRank="item" :key="item.id"/>
-      </div>
+    <h1 class="rank-type">官方榜</h1>
+    <div class="rank-offical">
+      <official-item
+        v-for="item in officalRanks"
+        :officalRank="item"
+        :key="item.id"
+      />
+      <singer-rank
+        :singerRank="singerRank"
+        v-if="Object.keys(singerRank).length"
+      />
+    </div>
+    <h1 class="rank-type">全球榜</h1>
+    <div class="rank-global">
+      <global-item
+        v-for="item in globalRanks"
+        :globalRank="item"
+        :key="item.id"
+      />
+    </div>
   </div>
 </template>
 
@@ -40,7 +51,11 @@ export default defineComponent({
     })
     onMounted(async () => {
       isLoading.value = true
-      const { officalRanks, globalRanks, singerRank }: any = await getRanksInfo()
+      const {
+        officalRanks,
+        globalRanks,
+        singerRank
+      }: any = await getRanksInfo()
       data.officalRanks = officalRanks
       data.globalRanks = globalRanks
       data.singerRank = singerRank
@@ -56,17 +71,17 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .rank {
-    .rank-type {
-      height: 50px;
-      font-size: 20px;
-      font-weight: bold;
-      line-height: 50px;
-    }
+  .rank-type {
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 50px;
+  }
 
-    .rank-global {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-    }
+  .rank-global {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 }
 </style>

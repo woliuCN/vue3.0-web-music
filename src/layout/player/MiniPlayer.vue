@@ -125,9 +125,11 @@ export default defineComponent({
     const handleTogglePlay = () => {
       playerStore.CHANGE_PLAYING(!isPlay.value)
     }
+    // 切换播放器状态,全屏或者底部栏
     const handleChangePlayerStatus = () => {
       ctx.emit('change-player-status')
     }
+    // 播放模式切换
     const handleChangeMode = debounce(() => {
       playerStore.CHANGE_MODE()
       showToast.value = true
@@ -136,6 +138,8 @@ export default defineComponent({
         clearTimeout(timer)
       }, 2000)
     }, 500)
+
+    // 更改音量
     const handleToggleMute = () => {
       if (playerStore.volume) {
         preVolume.value = playerStore.volume

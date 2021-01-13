@@ -30,8 +30,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue'
 import SongList from '@/components/song-list/Index.vue'
+import { defineComponent, PropType, ref } from 'vue'
 export default defineComponent({
   props: {
     album: {

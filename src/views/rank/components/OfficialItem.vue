@@ -42,9 +42,9 @@
 </template>
 
 <script lang="ts">
-import { playerStore } from '@/store/modules/player'
 import { defineComponent, PropType } from 'vue'
 import { useRouter } from 'vue-router'
+import { playerStore } from '@/store/modules/player'
 export default defineComponent({
   props: {
     officalRank: {
