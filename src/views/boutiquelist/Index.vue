@@ -110,7 +110,7 @@ export default defineComponent({
                 width: 28px;
                 height: 28px;
                 line-height: 28px;
-                color: #ec4141;
+                color: $primary-color;
                 text-align: center;
                 background: rgba(253, 253, 253, 0.9);
                 border-radius: 50%;

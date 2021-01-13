@@ -185,7 +185,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: $player-height;
   padding: 10px 20px;
   background: #f6f6f8;
   border-top: 1px solid #efefef;

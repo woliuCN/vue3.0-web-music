@@ -205,7 +205,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 /deep/.tabs-header {
-  padding: 0 2.5%;
+  padding: 0 $tab-padding_horizon;
   border-bottom: 1px solid #f1f1f1;
 
   .tabs-nav {
@@ -220,7 +220,7 @@ export default defineComponent({
 }
 
 .search-header {
-  padding: 2% 2.5%;
+  padding: 2% $tab-padding_horizon;
   font-size: 17px;
   font-weight: bold;
 }
@@ -315,7 +315,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  padding: 2% 2.5%;
+  padding: 2% $tab-padding_horizon;
 
   .video {
     flex: 0 0 23.5%;

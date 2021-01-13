@@ -105,7 +105,7 @@ export default defineComponent({
 
     &.icon-song-volume {
       font-size: 18px;
-      color: #ec4141;
+      color: $primary-color;
     }
   }
 
@@ -142,7 +142,7 @@ export default defineComponent({
 
     .iconfont {
       font-size: 36px;
-      color: #ec4141;
+      color: $primary-color;
       vertical-align: middle;
     }
   }

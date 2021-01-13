@@ -265,9 +265,9 @@ export default defineComponent({
           padding: 1px 2px;
           margin-left: 8px;
           font-size: 12px;
-          color: #ec4141;
+          color: $primary-color;
           cursor: default;
-          border: 1px solid #ec4141;
+          border: 1px solid $primary-color;
           border-radius: 2px;
         }
       }
@@ -380,7 +380,7 @@ export default defineComponent({
             width: 24px;
             height: 24px;
             line-height: 24px;
-            color: #ec4141;
+            color: $primary-color;
             text-align: center;
             background: rgba(253, 253, 253, 0.9);
             border-radius: 50%;

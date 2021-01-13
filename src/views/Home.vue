@@ -89,10 +89,10 @@ export default defineComponent({
 <style lang="scss" scoped>
   .main {
     position: fixed;
-    top: 60px;
+    top: $header-height;
     right: 0;
-    bottom: 70px;
-    left: 200px;
+    bottom: $player-height;
+    left: $sidebar-width;
     z-index: -1;
     padding-left: 30px;
     box-sizing: border-box;

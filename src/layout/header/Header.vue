@@ -50,7 +50,7 @@ export default defineComponent({
         left: 0;
         z-index: 5;
         display: flex;
-        height: 60px;
+        height: $header-height;
         padding: 0 20px;
         color: #f2f3f4;
         align-items: center;

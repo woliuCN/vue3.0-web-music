@@ -155,14 +155,14 @@ export default defineComponent({
 <style scoped lang="scss">
 /deep/.tabs-header,
 /deep/.tab-pane {
-  padding: 0 2.5%;
+  padding: 0 $tab-padding_horizon;
 }
 
 .details {
   .details-top {
     display: flex;
     align-items: flex-start;
-    padding: 2% 2.5%;
+    padding: 2% $tab-padding_horizon;
 
     .top-cover {
       flex: 0 0 auto;

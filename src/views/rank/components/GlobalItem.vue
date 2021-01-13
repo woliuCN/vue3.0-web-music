@@ -76,7 +76,7 @@ export default defineComponent({
       width: 36px;
       height: 36px;
       line-height: 36px;
-      color: #ec4141;
+      color: $primary-color;
       text-align: center;
       background: rgba(253, 253, 253, 0.9);
       border-radius: 50%;

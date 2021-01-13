@@ -210,7 +210,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .video {
   position: fixed;
-  top: 60px;
+  top: $header-height;
   bottom: 0;
   z-index: 3;
   display: flex;

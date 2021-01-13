@@ -44,7 +44,7 @@ export default defineComponent({})
   top: 60px;
   bottom: 0;
   left: 0;
-  width: 200px;
+  width: $sidebar-width;
   padding: 10px;
   border-right: 1px solid #efefef;
   box-sizing: border-box;

@@ -1,3 +1,9 @@
+$header-height: 60px;
+$player-height: 70px;
+$sidebar-width: 200px;
+$tab-padding_horizon: 2.5%;
+$primary-color: #ec4141;
+
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -62,7 +68,7 @@
                 width: 78%;
                 height: 3px;
                 margin: auto;
-                background: #ec4141;
+                background: $primary-color;
                 border-radius: 4px;
                 content: "";
             }

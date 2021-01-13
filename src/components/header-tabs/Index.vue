@@ -66,7 +66,7 @@ export default defineComponent({
         width: 80%;
         height: 3px;
         margin: auto;
-        background: #ec4141;
+        background: $primary-color;
         border-radius: 4px;
         content: "";
       }

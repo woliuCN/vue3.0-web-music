@@ -85,7 +85,7 @@ export default defineComponent({
       width: 24px;
       height: 24px;
       line-height: 24px;
-      color: #ec4141;
+      color: $primary-color;
       text-align: center;
       background: rgba(253, 253, 253, 0.9);
       border-radius: 50%;
@@ -113,7 +113,7 @@ export default defineComponent({
       position: relative;
       top: 1px;
       font-size: 36px;
-      color: #ec4141;
+      color: $primary-color;
 
     }
   }

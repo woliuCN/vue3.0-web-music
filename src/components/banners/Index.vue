@@ -72,7 +72,7 @@ export default defineComponent({
     }
   }
 
-  --swiper-theme-color: #ec4141; /* 设置 Swiper风格 */
+  --swiper-theme-color: $primary-color; /* 设置 Swiper风格 */
   --swiper-navigation-color: #eee; /* 单独设置按钮颜色 */
   --swiper-navigation-size: 16px; /* 设置按钮大小 */
 }

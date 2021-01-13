@@ -159,14 +159,14 @@ export default defineComponent({
 
 <style scoped lang="scss">
 /deep/.tabs-header {
-  padding: 0 2.5%;
+  padding: 0 $tab-padding_horizon;
 }
 
 .detail {
   .detail-top {
     display: flex;
     align-items: flex-start;
-    padding: 2% 2.5%;
+    padding: 2% $tab-padding_horizon;
 
     .top-cover {
       position: relative;
@@ -204,9 +204,9 @@ export default defineComponent({
           padding: 2px 4px;
           font-size: 14px;
           font-weight: 400;
-          color: #ec4141;
+          color: $primary-color;
           vertical-align: middle;
-          border: 1px solid #ec4141;
+          border: 1px solid $primary-color;
           border-radius: 4px;
         }
       }
@@ -236,7 +236,7 @@ export default defineComponent({
           &.light {
             padding-right: 8px;
             color: #fff;
-            background: #ec4141;
+            background: $primary-color;
             border: none;
 
             > span {
@@ -287,7 +287,7 @@ export default defineComponent({
 
   .detail-bottom {
     .bottom-comment {
-      padding: 2% 2.5%;
+      padding: 2% $tab-padding_horizon;
 
       .comment-box {
         .box-input {
