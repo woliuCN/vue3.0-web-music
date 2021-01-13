@@ -55,6 +55,9 @@ const Loading = function (options: Options) {
   const instance = createLoadingComponent(
     options
   )
+  if (document.getElementsByClassName('loading')[0]) {
+    document.body.removeChild(document.getElementsByClassName('loading')[0])
+  }
   // 挂载
   document.body.appendChild(instance.$el)
   return instance
