@@ -1,5 +1,11 @@
 declare type Nullable<T> = T | null;
 
+declare interface TabItem {
+    path: string;
+    content: string;
+}
+
+
 declare interface SingerSelectArgs {
     label: string;
     value: number | string;
@@ -83,4 +89,22 @@ declare interface Comment {
     time: string;
     likedCount: number;
     beReplied: Replied[];
+}
+
+// rank
+declare interface CommonRank {
+    id: number;
+    name: string;
+    coverImgUrl: string;
+    backgroundImgUrl: string;
+    updateTime: string;
+    playCount: string | number;
+    songs: Song[];
+}
+
+declare interface SingerRank {
+    coverImgUrl: string;
+    backgroundImgUrl: string;
+    updateTime: string;
+    artists: Artist [];
 }

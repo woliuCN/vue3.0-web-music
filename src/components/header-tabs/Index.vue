@@ -14,7 +14,6 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { TabItem } from './type'
 export default defineComponent({
   props: {
     defaultActive: {
